@@ -21,6 +21,7 @@
       this.load.spritesheet('dude', 'assets/dude.png', 32, 48);
       this.load.image('player', 'assets/player.png');
       this.load.image('monster', 'assets/monster_test.png');
+      this.load.image('bullet', 'assets/bullet.png');
     },
 
     create: function () {

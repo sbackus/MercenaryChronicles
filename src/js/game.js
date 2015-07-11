@@ -4,13 +4,18 @@
   function Game() {}
 
   Game.prototype = {
+
     create: function () {
       this.physics.startSystem(Phaser.Physics.ARCADE);
       this.input.onDown.add(this.onInputDown, this);
       this.input.onDown.add(this.drawPlayer, this);
       this.instantiatePlayer();
-      this.enemies = this.add.group();
+
+      this.enemies = this.add.group()
       this.createEnemies();
+      this.bulletCounter = 0;
+      this.bullets = this.add.group();
+      this.bullets.enableBody = true;
       this.physics.arcade.enable(this.player);
       this.cursors = this.input.keyboard.createCursorKeys();
     },
@@ -44,7 +49,19 @@
       this.player.body.velocity.x = 0;
       this.player.body.collideWorldBounds = true;
     },
+    spawnBullet: function() {
+      if (this.bulletCounter == 0)
+      {
+        var b = this.bullets.create(this.player.x, this.player.y, 'bullet');
+        b.body.velocity.setTo(0, -100);
+      }
+      this.bulletCounter += 1;
+      if (this.bulletCounter > 60)
+      {
+        this.bulletCounter = 0
+      }
 
+    },
     movePlayer: function() {
       if (this.cursors.right.isDown) {
         this.player.body.velocity.x = 50;
@@ -54,12 +71,18 @@
         this.player.animations.play('left');
       } else if (this.cursors.up.isDown) {
         this.player.body.velocity.y = -50;
-      } else {
+
+        this.spawnBullet();
+      }
+      else {
         this.player.animations.stop();
         this.player.frame = 4;
       }
     }
+
+
   };
+
 
 
 
