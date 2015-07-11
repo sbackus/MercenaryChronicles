@@ -9,14 +9,14 @@
       this.input.onDown.add(this.onInputDown, this);
       this.input.onDown.add(this.drawPlayer, this);
       this.instantiatePlayer();
-      this.enemy = new Enemy(this);
+      this.enemies = this.add.group();
+      this.createEnemies();
       this.physics.arcade.enable(this.player);
       this.cursors = this.input.keyboard.createCursorKeys();
     },
 
     update: function () {
       this.movePlayer();
-      this.enemy.update();
     },
 
     onInputDown: function () {
@@ -25,6 +25,12 @@
 
     drawPlayer: function() {
       // this.player = new Player();
+    },
+
+    createEnemies: function() {
+      for(var i = 10; i > 0; i--) {
+        this.enemies.create(new Enemy(this, i * 10, i * 40));
+      }
     },
 
     instantiatePlayer: function() {
