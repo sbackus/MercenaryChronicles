@@ -18,8 +18,7 @@
     },
 
     loadResources: function () {
-      // load your assets here
-      this.load.image('dude', 'assets/dude.png');
+      this.load.spritesheet('dude', 'assets/dude.png', 32, 48);
       this.load.image('player', 'assets/player.png');
     },
 
