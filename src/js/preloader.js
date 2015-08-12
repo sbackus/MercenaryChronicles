@@ -18,9 +18,10 @@
     },
 
     loadResources: function () {
-      this.load.spritesheet('dude', 'assets/dude.png', 32, 48);
+      this.load.spritesheet('dude', 'assets/MercinaryChronicles.png', 1600, 1944, 2);
       this.load.image('player', 'assets/player.png');
-      this.load.image('monster', 'assets/monster_test.png');
+      this.load.image('background', 'assets/background.jpg');
+      this.load.spritesheet('monster', 'assets/enemy2.png',240,194,2);
       this.load.image('bullet', 'assets/bullet.png');
     },
 
